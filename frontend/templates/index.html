@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/ede04a217f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css"
+    />
+    <style>
+      body {
+        font-family: Vazir !important;
+        direction: rtl;
+      }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}?{% now "U" %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?{% now "U" %}" />
+    <title>اردک‌اردک‌برو!</title>
+    <script defer src="{% static 'js/main.js' %}?{% now "U" %}" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="overlay hidden"></div>
+
+    <section class="search-section">
+      <figure>
+        <a href="{% url 'engine:main' %}"><img src="{% static 'img/ordak_logo.png' %}" width="350px" /></a>
+      </figure>
+      <form class="search-form">
+        <button class="btn-search-bar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+        <input
+          class="search-bar"
+          type="text"
+          name="query"
+          style="font-family: Vazir !important;"
+          placeholder="جستوجو کنید و ردیابی شوید!"
+          required
+        />
+      </form>
+      <div style="margin-bottom: 20px;">
+        <a target="__blank" href="https://github.com/ThisIsMatin/OrdakOrdakBoro">صفحه این پروژه در گیتهاب</a> / 
+        <a href="{% url 'engine:recentactivity' %}">جستوجو های اخیر کاربران</a>
+      </div>
+    </section>
+
+    <section class="product-info">
+      <h2>از مخفی بودن خسته شده اید؟ ما می توانیم کمک کنیم</h2>
+      <p>
+        اردک‌اردک‌برو یک موتور جستوجوگر مبتنی بر گوگل و بی احترام به حریم خصوصی شماست.<br>
+        شما میتوانید در اردک‌اردک‌برو بدون اینکه نگران باشید در اینترنت مخفی بمانید جستوجو کنید و ما اطلاعات شما را در اختیار همه قرار دهیم.
+      </p>
+      
+
+    </section>
+
+    <section class="privacy-info">
+      <h2>بی اهمیتی از حریم خصوصی شما، در هر دستگاهی!</h2>
+      <div class="privacy-info-wrapper">
+        <div class="privacy-info-box">
+          <figure>
+            <img src="{% static 'img/search.svg' %}" />
+          </figure>
+          <h3>حریم خصوصی، بی حریم خصوصی!</h3>
+          <p>
+            در دنیای اردک‌اردک‌برو، حریم خصوصی یک تعریف نامشخص و گنگ است. به همین دلیل شما باید حریم خصوصی را فراموش کنید و اطلاعات خود را با دستان خودتان به ما بسپارید!
+          </p>
+        </div>
+
+        <div class="privacy-info-box">
+          <figure>
+            <img src="{% static 'img/laptop.svg' %}" />
+          </figure>
+          <h3>بگذارید بدانیم شما کی هستید!</h3>
+          <p>
+            با استفاده از اردک‌اردک‌برو، شما اجازه میدهید تا ما بدانیم شما چه شخصی هستید و در دنیای اینترنت چه غلطی میکنید، پس از این اتفاق پرهیز نکنید!
+          </p>
+        </div>
+
+        <div class="privacy-info-box">
+          <figure>
+            <img src="{% static 'img/mobile.svg' %}" />
+          </figure>
+          <h3>قابل استفاده در تمامی دستگاه ها!</h3>
+          <p>
+            اردک‌اردک‌برو محدودیت خاصی در استفاده از آن در دستگاه های مختلف ندارد. پس چه بهتر که شما در دستگاه اندرویدیتان هم به ما اجازه دهید تا شما را ردیابی کنیم!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="information-info">
+      <h2>ما اطلاعات شما را ذخیره میکنیم، همیشه!</h2>
+      <p>
+        سیاست کار ما بسیار ساده است : ما اطلاعات شما را جمع آوری میکنیم و در اختیار همگان قرار میدهیم
+      </p>
+      <figure>
+        <img src="{% static 'img/monster.svg' %}" alt="" />
+      </figure>
+    </section>
+
+    <section class="tablebar-section">
+      <h2>سوالات متداول</h2>
+      <div class="tablebar active">
+        <h3>اردک‌اردک‌برو چه سمی است دیگر؟</h3>
+        <p>
+          اردک‌اردک‌برو یک پروژه موتور جستوجوگر متن باز است که برخلاف موتور جستوجوگر داک‌داک‌گو عمل میکند. در این موتور جستوجو، اطلاعات ساده ای از شما مانند عبارت جستوجو شده، سیستم عامل دستگاه شما و همچنین تاریخ و زمان جستوجوی شما به مدت 24 ساعت ذخیره شده و در صفحه جستوجو های اخیر قرار میگیرد.
+        </p>
+      </div>
+
+      <div class="tablebar">
+        <h3>مشارکت در پروژه اردک‌اردک‌برو</h3>
+        <p class="tablebar-hide-para">
+          شما میتوانید در پروژه متن باز اردک‌اردک‌برو مشارکت کنید. این پروژه در Github نگه داری شده و بر اساس پروانه GNU GPLv3 می باشد.
+        </p>
+      </div>
+
+      <a href="https://github.com/ThisIsMatin/OrdakOrdakBoro">
+        <button class="btn-default btn-tablebar-section" style="font-family: Vazir !important;">
+          به اردک‌اردک‌برو در گیتهاب ستاره بدهید!
+        </button>
+      </a>
+    </section>
+  </body>
+</html>

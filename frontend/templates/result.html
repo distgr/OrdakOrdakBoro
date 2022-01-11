@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/ede04a217f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css"
+    />
+    <style>
+      body {
+        font-family: Vazir !important;
+        direction: rtl;
+      }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}?{% now "U" %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?{% now "U" %}" />
+    <title>اردک‌اردک‌برو!</title>
+  </head>
+  <body>
+    <div class="overlay hidden"></div>
+
+    <section class="search-section" style="margin-bottom: 50px;">
+      <figure>
+        <a href="{% url 'engine:main' %}"><img src="{% static 'img/ordak_logo.png' %}" width="350px" /></a>
+      </figure>
+      <form class="search-form">
+        <button class="btn-search-bar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+        <input
+          class="search-bar"
+          type="text"
+          name="query"
+          placeholder="جستوجو کنید و ردیابی شوید!"
+          value="{{query}}"
+          required
+        />
+      </form>
+    </section>
+
+
+    <section class="tablebar-section">
+      <h2>{% if results %}نتایج جستوجوی شما{% else %}نتیجه خاصی یافت نشد{% endif %}</h2>
+      {% for result in results %}
+      <div class="tablebar active">
+        <h3><a target="__blank" href="{{result.link}}">{{result.title}}</a></h3>
+        <p>{{result.snippet}}</p>
+      </div>
+      {% endfor %}
+
+      <a href="https://github.com/ThisIsMatin/OrdakOrdakBoro">
+        <button class="btn-default btn-tablebar-section" style="font-family: Vazir !important;">
+          به اردک‌اردک‌برو در گیتهاب ستاره بدهید!
+        </button>
+      </a>
+    </section>
+  </body>
+</html>

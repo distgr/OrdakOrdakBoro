@@ -4,6 +4,7 @@ from django.shortcuts import render
 from serpapi import GoogleSearch
 from .models import RecentActivity as RecentActivityModel
 from decouple import config
+import datetime
 
 def Main(request):
     if(request.GET.get('query')):
@@ -38,6 +39,8 @@ def RecentActivity(request):
                 'device': activity.device,
                 'secret_ip': activity.secret_ip,
                 'timestamp': activity.timestamp.strftime('%Y-%m-%d %H:%M:%S')
-            } for activity in RecentActivityModel.objects.all()[::-1]
+            } for activity in RecentActivityModel.objects.filter(
+                timestamp__gte=(datetime.datetime.now() - datetime.timedelta(days=1))
+            )[::-1]
         ]
     })

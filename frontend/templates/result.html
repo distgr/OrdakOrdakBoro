@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block add_title %} - نتیجه جستوجو برای {{query}}{% endblock %}
+{% block add_title %} - نتیجه جستجو برای {{query}}{% endblock %}
 {% block sections %}
     <section class="search-section" style="margin-bottom: 50px;">
       <figure>
@@ -14,7 +14,7 @@
           class="search-bar"
           type="text"
           name="query"
-          placeholder="جستوجو کنید و ردیابی شوید!"
+          placeholder="جستجو کنید و ردیابی شوید!"
           value="{{query}}"
           required
         />
@@ -23,7 +23,7 @@
 
 
     <section class="tablebar-section">
-      <h2>{% if results %}نتایج جستوجوی شما{% else %}نتیجه خاصی یافت نشد{% endif %}</h2>
+      <h2>{% if results %}نتایج جستجوی شما{% else %}نتیجه خاصی یافت نشد{% endif %}</h2>
       {% for result in results %}
       <div class="tablebar active">
         <h3><a target="__blank" href="{{result.link}}">{{result.title}}</a></h3>

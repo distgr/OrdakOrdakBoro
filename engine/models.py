@@ -25,8 +25,8 @@ class RecentActivity(models.Model):
     )
 
     class Meta:
-        verbose_name = 'فعالیت/جستوجو'
-        verbose_name_plural = 'فعالیت/جستوجو های اخیر'
+        verbose_name = 'فعالیت/جستجو'
+        verbose_name_plural = 'فعالیت/جستجو های اخیر'
         
     def __str__(self):
         return self.query

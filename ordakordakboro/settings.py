@@ -10,6 +10,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0']
 
+CONFIG_DIR = {
+    'default_title': 'اردک اردک برو!',
+    'maintainer': 'https://github.com/ThisIsMatin/OrdakOrdakBoro'
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',

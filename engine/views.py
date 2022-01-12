@@ -3,6 +3,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from serpapi import GoogleSearch
 from .models import RecentActivity as RecentActivityModel
+from decouple import config
 
 def Main(request):
     if(request.GET.get('query')):
@@ -11,7 +12,7 @@ def Main(request):
             "q": request.GET.get('query'),
             "location": "Austin, Texas, United States",
             "hl": "en", "gl": "us", "google_domain": "google.com",
-            "api_key": "1863cdb3fb87fc1ab0276b1e2d7092d157f9b44aa00c0dfd560e45068eb4446a"
+            "api_key": config("google_api_key", cast=str)
         })
         results = search.get_dict()
 
@@ -37,6 +38,6 @@ def RecentActivity(request):
                 'device': activity.device,
                 'secret_ip': activity.secret_ip,
                 'timestamp': activity.timestamp.strftime('%Y-%m-%d %H:%M:%S')
-            } for activity in RecentActivityModel.objects.all()
+            } for activity in RecentActivityModel.objects.all()[::-1]
         ]
     })

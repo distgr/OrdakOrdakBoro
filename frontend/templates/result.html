@@ -26,7 +26,7 @@
       <h2>{% if results %}نتایج جستجوی شما{% else %}نتیجه خاصی یافت نشد{% endif %}</h2>
       {% for result in results %}
       <div class="tablebar active">
-        <h3><a target="__blank" href="{{result.url}}">{{result.title}}</a></h3>
+        <h3><a target="__blank" href="{{result.href}}">{{result.title}}</a></h3>
         <p>{{result.desc}}</p>
       </div>
       {% endfor %}

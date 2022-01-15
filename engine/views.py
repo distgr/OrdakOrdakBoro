@@ -1,3 +1,4 @@
+import jdatetime
 from django.http import request
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -27,13 +28,33 @@ def Main(request):
     return render(request, 'index.html')
 
 def RecentActivity(request):
-    return JsonResponse({
+
+    def get_platform(useragent):
+        if 'android' in useragent.lower():
+            return 'android'
+        elif 'linux' in useragent.lower():
+            return 'linux'
+        elif 'windows' in useragent.lower():
+            return 'win'
+        elif 'safari' in useragent.lower():
+            return 'osx'
+        return 'unknown'
+
+    return render(request, 'recent.html', {
         'activities': [
             {
                 'query': activity.query,
                 'device': activity.device,
+                'platform': get_platform(activity.device),
                 'secret_ip': activity.secret_ip,
-                'timestamp': activity.timestamp.strftime('%Y-%m-%d %H:%M:%S')
+                'timestamp': jdatetime.datetime(
+                    activity.timestamp.year-622,
+                    activity.timestamp.month,
+                    activity.timestamp.day,
+                    activity.timestamp.hour,
+                    activity.timestamp.minute,
+                    activity.timestamp.second,
+                    locale='fa_IR').strftime("%a, %d %b %Y در ساعت %H:%M:%S")
             } for activity in RecentActivityModel.objects.filter(
                 timestamp__gte=(datetime.datetime.now() - datetime.timedelta(days=1))
             )[::-1]

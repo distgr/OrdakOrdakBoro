@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_scripts %}<script defer src="{% static 'js/main.js' %}?{% now "U" %}" type="text/javascript"></script>{% endblock %}
+{% block sections %}
+<section class="search-section">
+  <figure>
+    <a href="{% url 'engine:main' %}"><img src="{% static 'img/ordak_logo.png' %}" width="350px" /></a>
+  </figure>
+  <div style="margin-bottom: 20px;">
+    <a target="__blank" href="https://github.com/ThisIsMatin/OrdakOrdakBoro">صفحه این پروژه در گیتهاب</a> / 
+    <a href="{% url 'engine:recentactivity' %}">جستجو های اخیر کاربران</a>
+  </div>
+</section>
+
+<section class="product-info" style="margin-bottom: 150px;">
+  <h2>جستجو های اخیر کاربران</h2>
+  <p>
+    همانطور که میدانید، اردک‌اردک‌برو به حریم خصوصی شما چوس-مثقال اهمیت نمیدهد<br>
+    و اطلاعات جستوجوی شما را در اختیار همگان قرار میدهد. در این صفحه میتوانید جستجو های اخیر کاربران را ببینید<br>
+    (توجه داشته باشید که این اطلاعات فقط محدوده 24 ساعت اخیر را نمایش میدهد)
+</p>
+  
+
+</section>
+
+<section class="tablebar-section">
+    {% for a in activities %}
+  <div class="tablebar active">
+    <h3><img style="width: 25px;" src="{% static 'img/platforms' %}/{{a.platform}}.png" alt=""> {{a.query}}</h3>
+    <p class="tablebar-hide-para" style="direction: ltr;">
+      IP : {{a.secret_ip}}<br>{{a.timestamp}}
+    </p>
+  </div>
+  {% endfor %}
+
+</section>
+{% endblock %}

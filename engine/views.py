@@ -1,21 +1,16 @@
 from django.http import request
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
-from serpapi import GoogleSearch
 from .models import RecentActivity as RecentActivityModel
-from decouple import config
+from scripts.ddg import DuckDuckGo
 import datetime
 
 def Main(request):
     if(request.GET.get('query')):
 
-        search = GoogleSearch({
-            "q": request.GET.get('query'),
-            "location": "Austin, Texas, United States",
-            "hl": "en", "gl": "us", "google_domain": "google.com",
-            "api_key": config("google_api_key", cast=str)
-        })
-        results = search.get_dict()
+        results = DuckDuckGo().search(
+            request.GET.get('query')
+        )
 
         xff = request.META.get('HTTP_X_FORWARDED_FOR')
         ip = xff.split(',')[0] if xff else request.META.get('REMOTE_ADDR')
@@ -27,7 +22,7 @@ def Main(request):
         )
         return render(request, 'result.html', {
             'query': request.GET.get('query'),
-            'results': results['organic_results'] if 'organic_results' in results else []
+            'results': results
         })
     return render(request, 'index.html')
 

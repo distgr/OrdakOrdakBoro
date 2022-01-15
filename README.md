@@ -8,8 +8,7 @@ Our policy is simple: OrdakOrdakBoro stores your searched information (such as d
 ## Qucik setup
 1. Rename the `example.env` file to `.env`
 2. Make a secret key for the project and put it in .env
-3. Create an account in [SerpApi](https://serpapi.com/) and put your API key in .env
-4. Build the project using `docker-compose`.
+3. Build the project using `docker-compose`.
 
 ## Contributing
 This project is under GNU GPLv3 license and contributing in this project has no special rules. This project uses MongoDb and Docker. If you have problems with Docker or other problems, you can change the database to a easier database (such as sqlite3).

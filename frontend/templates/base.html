@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}?{% now "U" %}" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}?{% now "U" %}" />
     <title>{% get_config 'default_title' %}{% block add_title %}{% endblock %}</title>
-    <script defer src="{% static 'js/main.js' %}?{% now "U" %}" type="text/javascript"></script>
+    {% block head_scripts %}{% endblock %}
   </head>
   <body>
     <div class="overlay hidden"></div>

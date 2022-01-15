@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block head_scripts %}<script defer src="{% static 'js/main.js' %}?{% now "U" %}" type="text/javascript"></script>{% endblock %}
 {% block sections %}
 <section class="search-section">
   <figure>

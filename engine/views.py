@@ -15,12 +15,16 @@ def Main(request):
 
         xff = request.META.get('HTTP_X_FORWARDED_FOR')
         ip = xff.split(',')[0] if xff else request.META.get('REMOTE_ADDR')
-    
-        RecentActivityModel.objects.create(
-            query=request.GET.get('query'),
-            device=request.META.get('HTTP_USER_AGENT'),
-            secret_ip=ip[:4]+('*'*(len(ip)-7))+ip[len(ip)-3:len(ip)]
-        )
+        if not RecentActivityModel.objects.filter(
+                query=request.GET.get('query'),
+                device=request.META.get('HTTP_USER_AGENT'),
+                secret_ip=ip[:4]+('*'*(len(ip)-7))+ip[len(ip)-3:len(ip)]
+            ).exists():
+            RecentActivityModel.objects.create(
+                query=request.GET.get('query'),
+                device=request.META.get('HTTP_USER_AGENT'),
+                secret_ip=ip[:4]+('*'*(len(ip)-7))+ip[len(ip)-3:len(ip)]
+            )
         return render(request, 'result.html', {
             'query': request.GET.get('query'),
             'results': results

@@ -1,10 +1,13 @@
+import json
+import datetime
 import jdatetime
-from django.http import request
-from django.http.response import HttpResponse, JsonResponse
+import requests
 from django.shortcuts import render
 from .models import RecentActivity as RecentActivityModel
 from scripts.ddg import DuckDuckGo
-import datetime
+
+swear_words = requests.get(
+    'https://raw.githubusercontent.com/amirshnll/Persian-Swear-Words/master/data.json').json()
 
 def Main(request):
     if(request.GET.get('query')):
@@ -43,11 +46,17 @@ def RecentActivity(request):
         elif 'safari' in useragent.lower():
             return 'osx'
         return 'unknown'
+    
+    def filter_query(query):
+        for word in query.split():
+            if word in swear_words['word']:
+                query = query.replace(word, '*'*len(word))
+        return query
 
     return render(request, 'recent.html', {
         'activities': [
             {
-                'query': activity.query,
+                'query': filter_query(activity.query),
                 'device': activity.device,
                 'platform': get_platform(activity.device),
                 'secret_ip': activity.secret_ip,

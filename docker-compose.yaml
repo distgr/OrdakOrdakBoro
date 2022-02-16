@@ -14,7 +14,7 @@ services:
   web:
     build: .
     restart: always
-    command: python src/manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/project
     ports:
